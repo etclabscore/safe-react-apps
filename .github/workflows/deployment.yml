@@ -37,7 +37,7 @@ jobs:
       - name: Test, Build, Deploy PR
         run: |
           npx nx affected --target=test
-          npx nx affected --target=build 
+          npx nx affected --target=build
           npx nx affected --target=deploy:pr
         env:
           PR_NUMBER: ${{ github.event.number }}
@@ -52,11 +52,8 @@ jobs:
         uses: mshick/add-pr-comment@v1
         with:
           message: |
-            * [Compound app](${{ env.REVIEW_FEATURE_URL }}/compound/)
             * [WalletConnect app](${{ env.REVIEW_FEATURE_URL }}/wallet-connect/)
-            * [Tx Builder App](${{ env.REVIEW_FEATURE_URL }}/tx-builder/)
             * [Drain Account App](${{ env.REVIEW_FEATURE_URL }}/drain-safe/)
-            * [RAMP Network App](${{ env.REVIEW_FEATURE_URL }}/ramp-network/)
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           repo-token-user-login: 'github-actions[bot]'
         env:
