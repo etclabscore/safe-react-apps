@@ -1,6 +1,6 @@
+import { useSafeAppsSDK } from '@gnosis.pm/safe-apps-react-sdk'
 import { useEffect, useState } from 'react'
 import Web3 from 'web3'
-import { useSafeAppsSDK } from '@gnosis.pm/safe-apps-react-sdk'
 
 function useWeb3() {
   const [web3, setWeb3] = useState<Web3 | undefined>()
@@ -46,6 +46,7 @@ export enum CHAINS {
   OPTIMISM = '10',
   KOVAN = '42',
   BSC = '56',
+  MORDOR = '63',
   XDAI = '100',
   POLYGON = '137',
   ENERGY_WEB_CHAIN = '246',
@@ -66,6 +67,7 @@ export const rpcUrlGetterByNetwork: {
   [CHAINS.OPTIMISM]: () => 'https://mainnet.optimism.io',
   [CHAINS.KOVAN]: null,
   [CHAINS.BSC]: () => 'https://bsc-dataseed.binance.org',
+  [CHAINS.MORDOR]: () => 'https://www.ethercluster.com/mordor',
   [CHAINS.XDAI]: () => 'https://rpc.gnosischain.com',
   [CHAINS.POLYGON]: () => 'https://rpc-mainnet.matic.network',
   [CHAINS.ENERGY_WEB_CHAIN]: () => 'https://rpc.energyweb.org',
