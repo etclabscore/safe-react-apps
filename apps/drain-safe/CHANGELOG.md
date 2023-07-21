@@ -2,6 +2,53 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [1.5.0](https://github.com/safe-global/safe-react-apps/compare/drain-safe-1.4.0...drain-safe-1.5.0) (2023-05-11)
+
+
+### Features
+
+* **wallet-connect:** update safe-apps-sdk to enable synchronous off-chain signatures ([#657](https://github.com/safe-global/safe-react-apps/issues/657)) ([6b1562f](https://github.com/safe-global/safe-react-apps/commit/6b1562f59eeaff662c212ee0b71f7df602cf0185))
+
+
+
+# [1.4.0](https://github.com/safe-global/safe-react-apps/compare/drain-safe-1.3.6...drain-safe-1.4.0) (2023-02-27)
+
+
+### Features
+
+* **wallet-connect:** EIP-1271 support ([8084cd3](https://github.com/safe-global/safe-react-apps/commit/8084cd36ca19fb740db740d3279774f6e3e1b890))
+
+
+
+## [1.3.6](https://github.com/safe-global/safe-react-apps/compare/drain-safe-1.3.5...drain-safe-1.3.6) (2023-02-06)
+
+
+
+## [1.3.5](https://github.com/safe-global/safe-react-apps/compare/drain-safe-1.3.4...drain-safe-1.3.5) (2022-12-14)
+
+
+
+## [1.3.4](https://github.com/safe-global/safe-react-apps/compare/drain-safe-1.3.3...drain-safe-1.3.4) (2022-12-02)
+
+
+
+## [1.3.3](https://github.com/safe-global/safe-react-apps/compare/drain-safe-1.3.2...drain-safe-1.3.3) (2022-11-03)
+
+
+
+## [1.3.2](https://github.com/safe-global/safe-react-apps/compare/drain-safe-1.3.1...drain-safe-1.3.2) (2022-10-05)
+
+
+### Bug Fixes
+
+* **drain-safe:** update dependencies, add background color, remove unused code ([e23b341](https://github.com/safe-global/safe-react-apps/commit/e23b341d2372500849be4d54dd9f63a60431c738))
+
+
+
+## [1.3.1](https://github.com/safe-global/safe-react-apps/compare/drain-safe-1.3.0...drain-safe-1.3.1) (2022-09-22)
+
+
+
 # [1.3.0](https://github.com/safe-global/safe-react-apps/compare/drain-safe-1.2.1...drain-safe-1.3.0) (2022-06-22)
 
 

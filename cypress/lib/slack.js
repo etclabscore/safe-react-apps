@@ -1,10 +1,14 @@
 const axios = require('axios')
 
 export const sendSlackMessage = async results => {
-  if (results) {
+  if (results && results.totalPassed !== results.totalTests) {
     try {
       const url = process.env.SLACK_WEBHOOK_URL
       if (!url) {
+        return
+      }
+
+      if (!results.runs[0].spec.name.includes('safe-apps-check.spec.cy.js')) {
         return
       }
 
@@ -24,7 +28,7 @@ const buildSlackMessage = results => {
     type: 'section',
     text: {
       type: 'mrkdwn',
-      text: '*Safe Apps liveness tests*',
+      text: '*Liveness tests*',
     },
   }
 
@@ -33,7 +37,7 @@ const buildSlackMessage = results => {
     fields: [
       {
         type: 'mrkdwn',
-        text: `*Domain:*\n${process.env.CYPRESS_BASE_URL}`,
+        text: `*Domain:*\n${process.env.CYPRESS_WEB_BASE_URL}`,
       },
       {
         type: 'mrkdwn',
@@ -45,7 +49,7 @@ const buildSlackMessage = results => {
       },
       {
         type: 'mrkdwn',
-        text: `*Config Service:*\n${process.env.CYPRESS_CONFIG_SERVICE_BASE_URL}`,
+        text: `*Config Service:*\n${process.env.CYPRESS_CLIENT_GATEWAY_BASE_URL}`,
       },
     ],
   }
@@ -54,7 +58,7 @@ const buildSlackMessage = results => {
     type: 'section',
     text: {
       type: 'mrkdwn',
-      text: `*Safe URL:*\n${process.env.CYPRESS_BASE_URL}/${process.env.CYPRESS_NETWORK_PREFIX}:${process.env.CYPRESS_TESTING_SAFE_ADDRESS}/apps`,
+      text: `*Safe URL:*\n${process.env.CYPRESS_WEB_BASE_URL}/${process.env.CYPRESS_NETWORK_PREFIX}:${process.env.CYPRESS_TESTING_SAFE_ADDRESS}/apps`,
     },
   }
 
@@ -88,7 +92,7 @@ const buildSlackMessage = results => {
         emoji: true,
       },
       value: 'click_me_123',
-      url: 'https://github.com/safe-global/safe-react-apps/actions/workflows/safe-apps-check.yml',
+      url: 'https://github.com/safe-global/safe-react-apps/actions',
       action_id: 'button-action',
     },
   }

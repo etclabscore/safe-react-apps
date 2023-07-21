@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useState } from 'react'
-import { getSafeApps, SafeAppData, SafeAppsResponse } from '@gnosis.pm/safe-react-gateway-sdk'
-import { useSafeAppsSDK } from '@gnosis.pm/safe-apps-react-sdk'
-
-const BASE_URL = 'https://safe-client.gnosis.io'
+import {
+  getSafeApps,
+  SafeAppData,
+  SafeAppsResponse,
+} from '@safe-global/safe-gateway-typescript-sdk'
+import { useSafeAppsSDK } from '@safe-global/safe-apps-react-sdk'
 
 type UseAppsResponse = {
-  findSafeApp: (safeAddress: string) => SafeAppData | undefined
-  openSafeApp: (safeAppAddress: string) => void
+  findSafeApp: (safeAppUrl: string) => SafeAppData | undefined
+  openSafeApp: (safeAppUrl: string) => void
 }
 
 export function useApps(): UseAppsResponse {
@@ -20,7 +22,7 @@ export function useApps(): UseAppsResponse {
       try {
         const chainInfo = await sdk.safe.getChainInfo()
         const environmentInfo = await sdk.safe.getEnvironmentInfo()
-        const appsList = await getSafeApps(BASE_URL, chainInfo.chainId)
+        const appsList = await getSafeApps(chainInfo.chainId)
 
         setOrigin(environmentInfo.origin)
         setSafeAppsList(appsList)
@@ -34,7 +36,10 @@ export function useApps(): UseAppsResponse {
   const openSafeApp = useCallback(
     (url: string) => {
       if (origin?.length) {
-        window.parent.location.href = `${origin}/app/${networkPrefix}:${safe.safeAddress}/apps?appUrl=${url}`
+        window.open(
+          `${origin}/apps/open?safe=${networkPrefix}:${safe.safeAddress}&appUrl=${url}`,
+          '_blank',
+        )
       }
     },
     [networkPrefix, origin, safe],
@@ -42,9 +47,13 @@ export function useApps(): UseAppsResponse {
 
   const findSafeApp = useCallback(
     (url: string): SafeAppData | undefined => {
-      let { hostname } = new URL(url)
+      try {
+        const { hostname } = new URL(url)
 
-      return safeAppsList.find(safeApp => safeApp.url.includes(hostname))
+        return safeAppsList.find(safeApp => safeApp.url.includes(hostname))
+      } catch (error) {
+        console.error('Unable to find Safe App:', error)
+      }
     },
     [safeAppsList],
   )
