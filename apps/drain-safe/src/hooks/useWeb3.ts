@@ -1,4 +1,3 @@
-import { useSafeAppsSDK } from '@gnosis.pm/safe-apps-react-sdk'
 import { useEffect, useState } from 'react'
 import Web3 from 'web3'
 import { useSafeAppsSDK } from '@safe-global/safe-apps-react-sdk'
