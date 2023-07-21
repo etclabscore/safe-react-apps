@@ -8,6 +8,7 @@
     "@mui/x-data-grid": "4.0.2",
     "@safe-global/safe-apps-provider": "0.17.0",
     "bignumber.js": "^9.1.0",
+    "web3": "^1.10.0",
     "web3-eth-abi": "~1.8.1"
   },
   "scripts": {
